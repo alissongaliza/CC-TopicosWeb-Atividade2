@@ -1,0 +1,23 @@
+.product_item{
+    border-style: groove;
+    width: 120px;
+    border-radius: 5px;
+    float:left;
+    padding: 5px;
+    margin: 2px;
+    
+}
+.product_item:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.product_item_thumbnail{
+
+}
+
+.product_item_add_to_cart{
+    
+}
+/* .inline_block{
+    display:inline-block;
+} */

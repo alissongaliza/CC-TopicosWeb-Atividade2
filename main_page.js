@@ -1,16 +1,17 @@
 // import Product from "/home/lumo/CC-TopicosWeb-Atividade2/product.js";
 
-// const Product= require('./product.js');
+//const Product= require('./product.js');
 
 class Product{
 
 
-    constructor(name, category, price, img){
+    constructor(name, category, price, img, thumb){
 
         this.name = name;
         this.category = category;
         this.price = price;
         this.img = img;
+        this.thumb = thumb;
     }
 
     get product_name(){
@@ -30,50 +31,28 @@ class Product{
     }
 }
 
-var all_products = [
-
-    new Product('Sueter Bomber De Seda Barroca', 'Sueter', 18050.00, null),
-    new Product('Sueter Breton J W Anderson', 'Sueter', 2734.00, null),
-    new Product('Sueter Listrado Missoni', 'Sueter', 2850.00, null),
-    new Product('Sueter Com Estampas Versace', 'Sueter', 4452.00, null),
-    new Product('Slide Medusa Com Glitter Versace', 'Chinelo', 2767.00, null),
-    new Product('Slide D&G 1984 Couro', 'Chinelo',2469.50,null),
-    new Product('Slide Industrial', 'Chinelo',2530.99, null),
-    new Product('Vestido Longo Preto Givenchy', 'Vestido', 814.99, null),
-    new Product('Vestido de camurça Saint Laurent', 'Vestido', 23920.00, null),
-    new Product('Vestido Asymmetrical Bolt Balmain', 'Vestido', 22820.99, null)
-
-];
-
-var all_categories = [...new Set(all_products.map(product =>product.category))]
-            .map(category => ({ name:category,count: all_products.filter(product =>product.category ===category).length }));
-
-            
-
-function load_categories(){
+function load_categories(all_categories){
     
-    var items_category = 5;     //lista com produtos filtrados por categoria
     var ul = document.getElementById("category-list-recipient");
 
-    for (var i = 1; i <= items_category; i++)
+    for (var i = 0; i < all_categories.length; i++)
     {
         var li = document.createElement("li");  
         li.className = "category";
 
         var a = document.createElement("a");
-        a.innerHTML = "Subfile " + i;
+        a.innerHTML = all_categories[i].name;
 
         li.appendChild(a);
         ul.appendChild(li);
     }
 }
 
-function load_products(){
+function load_products(all_products){
     
-    var products = 5;           //lista com todos os produtos
     var div = document.getElementById("products");
 
-    for (var i = 1; i <= products; i++)
+    for (var i = 0; i < all_products.length; i++)
     {
         var div_produto = document.createElement("div");
         div_produto.className = 'product_item';
@@ -82,19 +61,53 @@ function load_products(){
         thumbnail.className = 'product_item_thumbnail';
         //TODO: Inserir as imagens de cada produto
 
-        var name = document.createElement('paragraph');
+        var name = document.createElement('h4');
         name.id = 'product_item_name';
+        name.innerHTML = all_products[i].product_name;
 
-        var price = document.createElement('paragraph');
+        // var div_produto_inline_price = document.createElement('div');
+        // div_produto_inline_price.className = 'inline_block'
+
+        var price = document.createElement('label');
         price.className = 'product_item_price';
+        price.innerHTML = all_products[i].product_price;
 
         var add_to_cart = document.createElement('button');
         add_to_cart.className = 'product_item_add_to_cart';
+        add_to_cart.innerHTML = 'Add';
 
+        div_produto.appendChild(thumbnail);
+        div_produto.appendChild(name);
+        div_produto.appendChild(price);
+        div_produto.appendChild(add_to_cart);
+        // div_produto_inline_price.appendChild(price);
+        // div_produto_inline_price.appendChild(add_to_cart);
+        // div_produto.appendChild(div_produto_inline_price);
         div.appendChild(div_produto);
-        div.appendChild(thumbnail);
-        div.appendChild(name);
-        div.appendChild(price);
-        div.appendChild(add_to_cart);
     }
+}
+
+function main(){
+
+    var all_products = [
+
+        new Product('Sueter Bomber De Seda Barroca', 'Sueter', 18050.00, 'JaquetaBomberDeSedaBarroca.jpg','JaquetaBomberDeSedaBarrocaThumbnail.jpg'),
+        new Product('Sueter Breton J W Anderson', 'Sueter', 2734.00, 'SueterBretonJWAnderson.jpg','SueterBretonJWAndersonThumbnail.jpg'),
+        new Product('Sueter Listrado Missoni', 'Sueter', 2850.00, 'SueterListradoMissoni.jpg','SueterListradoMissoniThumbnail.jpg'),
+        new Product('Sueter Com Estampas Versace', 'Sueter', 4452.00, 'SueterComEstampasVersace.jpg','SueterComEstampasVersaceThumbnail.jpg'),
+        new Product('Slide Medusa Com Glitter Versace', 'Chinelo', 2767.00, 'SlideMedusaComGlitter.jpg','SlideMedusaComGlitterThumbnail.jpg'),
+        new Product('Slide D&G 1984 Couro', 'Chinelo',2469.50,'SlideD&G1984Couro.jpg','SlideD&G1984CouroThumbnail.jpg'),
+        new Product('Slide Industrial', 'Chinelo',2530.99, 'SlideIndustrial.jpg','SlideIndustrialThumbnail.jpg'),
+        new Product('Vestido Longo Preto Givenchy', 'Vestido', 814.99, 'VestidoLongoPretoGivenchy.jpg','VestidoLongoPretoGivenchyThumbanail.jpg'),
+        new Product('Vestido de camurça Saint Laurent', 'Vestido', 23920.00, 'VestidoDeCamurcaSaintLautent.jpg','VestidoDeCamurcaSaintLautentThumbnail.jpg'),
+        new Product('Vestido Asymmetrical Bolt Balmain', 'Vestido', 22820.99, 'VestidoAsymmetricalBoltBalmain.jpg','VestidoAsymmetricalBoltBalmainThumbnail.jpg')
+    
+    ];
+    
+    //a seguinte desgraca conta o numero diferente de categorias dos nossos produtos
+    var all_categories = [...new Set(all_products.map(product =>product.category))]
+                .map(category => ({ name:category,count: all_products.filter(product =>product.category ===category).length }));    
+    
+    load_categories(all_categories);
+    load_products(all_products);
 }
