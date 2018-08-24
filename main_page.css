@@ -1,6 +1,16 @@
+.middle-table-products{
+    
+    overflow:auto; 
+}
+
+#products{
+    overflow:auto; 
+}
+
 .product_item{
     border-style: groove;
     width: 120px;
+    height: 200px;
     border-radius: 5px;
     float:left;
     padding: 5px;
@@ -21,3 +31,22 @@
 /* .inline_block{
     display:inline-block;
 } */
+.left-column-categories{
+    border-style: groove;
+    width: 100px;
+    height: 400px;
+    border-radius: 1px;
+    float:left;
+    /* padding: 1px; */
+    /* margin: 2px; */
+}
+
+#category-list-recipient{
+    list-style-type: none;
+    margin-left: -20px;
+    /* align-self: center; */
+}
+
+.top-paragraph-cart{
+    float: right;
+}

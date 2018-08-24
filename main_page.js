@@ -40,7 +40,7 @@ function load_categories(all_categories){
         var li = document.createElement("li");  
         li.className = "category";
 
-        var a = document.createElement("a");
+        var a = document.createElement("h3");
         a.innerHTML = all_categories[i].name;
 
         li.appendChild(a);
