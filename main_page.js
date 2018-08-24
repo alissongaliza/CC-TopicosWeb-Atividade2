@@ -70,7 +70,7 @@ function load_products(all_products){
 
         var price = document.createElement('label');
         price.className = 'product_item_price';
-        price.innerHTML = all_products[i].product_price;
+        price.innerHTML = all_products[i].product_price.toFixed(2);
 
         var add_to_cart = document.createElement('button');
         add_to_cart.className = 'product_item_add_to_cart';
