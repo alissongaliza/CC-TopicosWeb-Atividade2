@@ -39,6 +39,9 @@ function load_categories(all_categories){
     {
         var li = document.createElement("li");  
         li.className = "category";
+        li.addEventListener('click',() => {
+            sessionStorage.setItem('selected_category',li.a.innerHTML);
+        });
 
         var a = document.createElement("h3");
         a.innerHTML = all_categories[i].name;
@@ -59,6 +62,7 @@ function load_products(all_products){
 
         var thumbnail = document.createElement('img');
         thumbnail.className = 'product_item_thumbnail';
+        thumbnail.src = `./imgs/${all_products[i].thumb}`
         //TODO: Inserir as imagens de cada produto
 
         var name = document.createElement('h4');
@@ -70,7 +74,7 @@ function load_products(all_products){
 
         var price = document.createElement('label');
         price.className = 'product_item_price';
-        price.innerHTML = all_products[i].product_price.toFixed(2);
+        price.innerHTML = `R$ ${all_products[i].product_price.toFixed(2)}`;
 
         var add_to_cart = document.createElement('button');
         add_to_cart.className = 'product_item_add_to_cart';
@@ -98,7 +102,7 @@ function main(){
         new Product('Slide Medusa Com Glitter Versace', 'Chinelo', 2767.00, 'SlideMedusaComGlitter.jpg','SlideMedusaComGlitterThumbnail.jpg'),
         new Product('Slide D&G 1984 Couro', 'Chinelo',2469.50,'SlideD&G1984Couro.jpg','SlideD&G1984CouroThumbnail.jpg'),
         new Product('Slide Industrial', 'Chinelo',2530.99, 'SlideIndustrial.jpg','SlideIndustrialThumbnail.jpg'),
-        new Product('Vestido Longo Preto Givenchy', 'Vestido', 814.99, 'VestidoLongoPretoGivenchy.jpg','VestidoLongoPretoGivenchyThumbanail.jpg'),
+        new Product('Vestido Longo Preto Givenchy', 'Vestido', 814.99, 'VestidoLongoPretoGivenchy.jpg','VestidoLongoPretoGivenchyThumbnail.jpg'),
         new Product('Vestido de camurça Saint Laurent', 'Vestido', 23920.00, 'VestidoDeCamurcaSaintLautent.jpg','VestidoDeCamurcaSaintLautentThumbnail.jpg'),
         new Product('Vestido Asymmetrical Bolt Balmain', 'Vestido', 22820.99, 'VestidoAsymmetricalBoltBalmain.jpg','VestidoAsymmetricalBoltBalmainThumbnail.jpg')
     
